@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,6 +15,13 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         // Set initial velocity to move the player forward
         rb.velocity = new Vector2(forwardSpeed, rb.velocity.y);
+    }
+
+    private void ResetTheGame()
+    {
+        // Reload the current scene
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.buildIndex);
     }
 
     void Update()
@@ -37,6 +45,7 @@ public class PlayerController : MonoBehaviour
         // If the player hits an obstacle or ground, end the game
         if (collision.gameObject.CompareTag("Obstacle") || collision.gameObject.CompareTag("Ground"))
         {
+            ResetTheGame();
             Debug.Log("Game Over!");
             // Here you could add code to reset the game or show a game-over screen
         }
