@@ -8,6 +8,8 @@ public class LightShow2D : MonoBehaviour
     public float radius = 5f; // Radius of movement
     public float flashInterval = 0.5f; // Time interval for flashing
 
+   
+
     private GameObject[] lights;
     private float angle;
     private float flashTimer;
@@ -18,8 +20,9 @@ public class LightShow2D : MonoBehaviour
         lights = new GameObject[numberOfLights];
         for (int i = 0; i < numberOfLights; i++)
         {
+
             lights[i] = Instantiate(lightPrefab);
-            lights[i].transform.position = new Vector3(0, 0, 0); // Set initial position at (0, 0, 0)
+           // lights[i].transform.position = new Vector3(0, 0, 0); // Set initial position at (0, 0, 0)
         }
     }
 
@@ -31,7 +34,7 @@ public class LightShow2D : MonoBehaviour
         {
             float x = Mathf.Cos(angle + (i * Mathf.PI / lights.Length)) * radius;
             float y = Mathf.Sin(angle + (i * Mathf.PI / lights.Length)) * radius;
-            lights[i].transform.position = new Vector3(x, y, 0) + Camera.main.transform.position;
+            lights[i].transform.position = new Vector3(x, y, 1) + Camera.main.transform.position;
         }
 
         // Flashing effect
